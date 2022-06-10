@@ -1,0 +1,4 @@
+github.com/cresta/pipe v0.0.0-20220604203614-ee804c31fc65 h1:0reT50WSXeXUZso8BvAqFnBmjmA8VpiMqpkD/EbDB6c=
+github.com/cresta/pipe v0.0.0-20220604203614-ee804c31fc65/go.mod h1:4FI1ZPReIyNl1t+KkYVVI2a5ML+iNlO94kJ+Mk6MukE=
+github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 h1:El6M4kTTCOh6aBiKaUGG7oYTSPP8MxqL4YI3kZKwcP4=
+github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510/go.mod h1:pupxD2MaaD3pAXIBCelhxNneeOaAeabZDe5s4K6zSpQ=
