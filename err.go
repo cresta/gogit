@@ -22,7 +22,7 @@ func execErr(msg string, stdout bytes.Buffer, stderr bytes.Buffer, base error) *
 }
 
 func (e *ExecErr) Error() string {
-	return fmt.Sprintf("Exec error: %s: %s", e.Msg, e.Base)
+	return fmt.Sprintf("Exec error: %s: (stdout=%s,stderr=%s) %s", e.Msg, e.Stdout.String(), e.Stderr.String(), e.Base)
 }
 
 func (e *ExecErr) Unwrap() error {
