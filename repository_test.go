@@ -12,6 +12,7 @@ func makeTestRepository(t *testing.T) *Repository {
 	c := MakeTestCloner(t)
 	repo, err := c.Clone(context.Background(), readOnlyPublicRepo)
 	require.NoError(t, err)
+	require.NoError(t, repo.SetUserNameAndEmailIfUnset(context.Background(), "test", "test@example.com"))
 	return repo
 }
 
