@@ -59,20 +59,20 @@ func (r *Repository) GetUserName(ctx context.Context) (string, error) {
 }
 
 func (r *Repository) SetUserNameAndEmailIfUnset(ctx context.Context, name string, email string) error {
-	email, err := r.GetUserEmail(ctx)
+	existingEmail, err := r.GetUserEmail(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get user email: %w", err)
 	}
-	if email == "" {
+	if existingEmail == "" {
 		if _, err := wrappedExec(ctx, r.location, r.logger, "git", "config", "user.email", email); err != nil {
 			return fmt.Errorf("git config user.email failed: %w", err)
 		}
 	}
-	name, err = r.GetUserName(ctx)
+	existingName, err := r.GetUserName(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get user name: %w", err)
 	}
-	if name == "" {
+	if existingName == "" {
 		if _, err := wrappedExec(ctx, r.location, r.logger, "git", "config", "user.name", name); err != nil {
 			return fmt.Errorf("git config user.name failed: %w", err)
 		}
