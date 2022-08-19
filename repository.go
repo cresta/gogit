@@ -2,7 +2,9 @@ package gogit
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"os/exec"
 	"strings"
 	"sync"
 )
@@ -45,6 +47,12 @@ func (r *Repository) GuessRemoteName(ctx context.Context) (string, error) {
 func (r *Repository) GetUserEmail(ctx context.Context) (string, error) {
 	execResult, err := wrappedExec(ctx, r.location, r.logger, "git", "config", "--get", "user.email")
 	if err != nil {
+		var exitErr *exec.ExitError
+		if errors.As(err, &exitErr) {
+			if exitErr.ExitCode() == 1 {
+				return "", nil
+			}
+		}
 		return "", fmt.Errorf("git config --get user.email failed: %w", err)
 	}
 	return strings.TrimSpace(execResult.stdout.String()), nil
@@ -53,6 +61,12 @@ func (r *Repository) GetUserEmail(ctx context.Context) (string, error) {
 func (r *Repository) GetUserName(ctx context.Context) (string, error) {
 	execResult, err := wrappedExec(ctx, r.location, r.logger, "git", "config", "--get", "user.name")
 	if err != nil {
+		var exitErr *exec.ExitError
+		if errors.As(err, &exitErr) {
+			if exitErr.ExitCode() == 1 {
+				return "", nil
+			}
+		}
 		return "", fmt.Errorf("git config --get user.name failed: %w", err)
 	}
 	return strings.TrimSpace(execResult.stdout.String()), nil
