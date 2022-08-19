@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-const readOnlyPublicRepo = "git@github.com:cresta/gitops-autobot-reference.git"
+const readOnlyPublicRepo = "https://github.com/cresta/gitops-autobot-reference.git"
 
 type TestLogger struct {
 	t *testing.T
