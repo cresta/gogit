@@ -25,11 +25,12 @@ func (n SilentLogger) Info(_ context.Context, _ string, _ map[string]string, _ m
 var _ Logger = &SilentLogger{}
 
 type Cloner struct {
-	Logger Logger
+	Logger  Logger
+	TempDir string
 }
 
 func (p *Cloner) Clone(ctx context.Context, origin string) (*Repository, error) {
-	into, err := os.MkdirTemp("", "gogit")
+	into, err := os.MkdirTemp(p.TempDir, "gogit")
 	if err != nil {
 		return nil, fmt.Errorf("unable to create temporary directory: %w", err)
 	}
