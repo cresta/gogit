@@ -1,6 +1,6 @@
 module github.com/cresta/gogit
 
-go 1.19
+go 1.20
 
 require (
 	github.com/cresta/pipe v0.0.1
